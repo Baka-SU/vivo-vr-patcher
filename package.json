@@ -1,0 +1,23 @@
+{
+  "name": "vivo-vr-ko-remover",
+  "version": "0.1.0",
+  "license": "GPL-3.0-only",
+  "private": true,
+  "type": "module",
+  "description": "A simple vr.ko Remover for Vivo Devices",
+  "author": {"name": "BakaSU Development","url": "https://bakasu.org"},
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "wasm:build": "node build.mjs",
+    "postinstall": "cargo install wasm-pack --version 0.15.0 --locked",
+    "build": "yarn wasm:build && yarn docs:build",
+    "dev": "yarn wasm:build && yarn docs:dev"  
+  },
+  "dependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.44"
+  }
+}
