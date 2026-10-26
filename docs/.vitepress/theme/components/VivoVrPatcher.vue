@@ -15,6 +15,7 @@ const messages = {
     selected: "Selected",
     working: "Parsing and repacking the image. Keep this page open…",
     failed: "Patch failed",
+    workerError: "The patch worker encountered an error",
     loaded: "Tool loaded",
     started: "Starting processing",
     done: "Processing complete. The patched vendor_boot image download has been requested.",
@@ -65,9 +66,12 @@ function initialize(event) {
   loading.value = true;
   status.value = t.loading;
   try {
-    worker = new Worker("/tools/vivo-vr-patcher-worker.js");
+    worker = new Worker(
+      `${import.meta.env.BASE_URL}tools/vivo-vr-patcher-worker.js`,
+    );
     worker.onmessage = handleWorkerMessage;
-    worker.onerror = ({ message }) => handleError(message);
+    worker.onerror = (event) =>
+      handleError(event.message || event.error?.message || t.workerError);
   } catch (error) {
     handleError(error instanceof Error ? error.message : String(error));
   }
@@ -85,9 +89,11 @@ function handleError(message) {
 }
 
 function localizeError(value) {
-  const [code, detail] = value.split(/:(.*)/s);
+  const message =
+    typeof value === "string" ? value : String(value ?? t.workerError);
+  const [code, detail] = message.split(/:(.*)/s);
   const translated = t.errors[code];
-  if (!translated) return value;
+  if (!translated) return message;
   return detail ? `${translated}: ${detail}` : translated;
 }
 

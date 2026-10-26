@@ -5,7 +5,9 @@ function wasmText(pointer, length) {
 }
 
 async function initialize() {
-  const response = await fetch("/tools/vivo-vr-patcher.wasm");
+  const response = await fetch(
+    new URL("./vivo-vr-patcher.wasm", self.location.href),
+  );
   if (!response.ok) throw new Error(`WASM Download FAILED! HTTP result: ${response.status}`);
   const imports = {
     env: {
