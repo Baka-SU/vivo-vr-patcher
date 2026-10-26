@@ -4,7 +4,7 @@ A browser-based tool for removing the `vr.ko` kernel module from a Vivo device's
 
 ## Online demo
 
-Open the [Vivo `vr.ko` patcher demo](https://baka-su.github.io/vivo-vr-patcher/demo).
+Open the [Vivo `vr.ko` patcher demo](https://bakasu.org/vivo-vr-patcher/demo).
 
 ## Usage
 
