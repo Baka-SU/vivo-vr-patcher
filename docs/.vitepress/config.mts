@@ -12,8 +12,8 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/vivo-vr-patcher/' },
-      { text: 'demo', link: '/vivo-vr-patcher/demo' }
+      { text: 'Home', link: '/' },
+      { text: 'demo', link: '/demo' }
     ],
   }
 })
